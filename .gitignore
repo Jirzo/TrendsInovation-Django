@@ -1,0 +1,25 @@
+# Django #
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Virtual env #
+venv/
+.env/
+
+# Static file, medios #
+/staticfiles/
+/media/
+
+
+# Migration files
+*.log
+*.pot
+*.pyc
+*.mo
+
+# env work files #
+.idea/
+.vscode/
+*.swp
