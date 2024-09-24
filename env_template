@@ -1,4 +1,0 @@
-#!/urs/bin/env bash
-export DEBUG=1
-export SECRET_KEY='DRFM_732hd2398dc28m289django-insecure-rptraw#8shzx3wp=ejp@&$r4wk$*n73=^l91%g@f6w+v%n%%2#'
-export DJANGO_ALLOWED_HOSTS=* localhost 127.0.0.1 [::1]
