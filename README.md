@@ -1,9 +1,9 @@
 ﻿<h1 align="center">DJANGO</h1>
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
-
-These instructions will help you get started with the Django environment. <br>
-So, first clone the repository from Github and switch to the new directory:
+Hi! These steps will guide you through setting up your Django environment.
+\
+First, clone the repository from GitHub and navigate to the newly created directory:
 
 ## Prerequisites
 
@@ -14,26 +14,30 @@ So, first clone the repository from Github and switch to the new directory:
 
 ## Virtual enviroment
 
-To activate the virtual environment for your project, begin by running the command line as an administrator, then navigate to the directory where you've cloned the repository. Once you're in the correct folder, execute the following command: `.\venv\Scripts\activate` and press enter.
 
-## Install requirementgs
+To initialize the virtual environment for your project, first navigate to the project's root directory. Use the command <br> `python -m venv venv` to create a virtual environment. This action will generate a venv folder within the project directory. Afterward, open the command prompt with elevated privileges (as an administrator), move to the project directory, and activate the virtual environment by executing ``.\venv\Scripts\activate.`` Press Enter to confirm the activation.
 
-Upon activating the virtual environment, to install the necessary project requirements, simply enter the command `pip install -r ./requirements/base.txt` and patiently await the completion.
+## Install requirements
+
+After activating the virtual environment, install the project's dependencies by running the command <br> `pip install -r ./requirements/base.txt`. This will automatically install all the required packages specified <br> in the `requirements` file. Wait for the installation process to complete before proceeding.
 
 ## Run server
 
-Before to run sever we have to type two commands. <br>
-- Fist one: `python manage.py makemigrations`, this command is tasked with generating new migrations that reflect the modifications you've applied to your models
-- Second one `python manage.py migrate`, this command is in charge of applying and reverting migrations as needed.
-Theses step will create the tables tha Django needs and also create our four table that we will need.
+Before starting the server, two commands must be executed:
 
-These commands will introduce additional tables to our database, enhancing the relationship between Django and MariaDB.
+- First: `python manage.py makemigrations`, which generates migration files based on the changes made to your models.
+- Second: `python manage.py migrate`, responsible for applying or rolling back migrations as required.
 
-Now the only thing that you have to do it to run the server is type this `python manage.py runserver`
-After that you have to go to this addrees `http://127.0.0.1:8000/category/` so if everything is correct you will see this:
+These steps will create the necessary tables for Django’s internal use, along with the four custom tables required for your project.
+
+These commands will add additional tables to the database, further solidifying the integration between Django and MariaDB.
+
+To start the server, simply run `python manage.py runserver`. After the server is up and running, navigate to `http://127.0.0.1:8000/category/` in your browser. If everything is configured correctly, the expected page will be displayed.
+
 ![Django REST framework image](https://imgur.com/1VlORiB.png)
 
-There are two paths that you can visit
-- `http://127.0.0.1:8000/admin/` you'll require a username and password. Please utilize the following credentials: `Username: root` and `Password: admin` should those credentials fail, you'll need to create a superuser utilizing the following command: `python manage.py createsuperuser`
-- `http://127.0.0.1:8000/docs` and this command will provide you with documentation detailing the HTTP request methods available.
+There are two accessible paths:
+
+- `http://127.0.0.1:8000/admin/`: This requires authentication using a username and password. Use the following credentials: `Username: root` and `Password: admin`. If these credentials don't work, you can create a superuser by running the command `python manage.py createsuperuser`.
+- `http://127.0.0.1:8000/docs`: This will provide access to documentation outlining the available HTTP request methods.
 <hr/>

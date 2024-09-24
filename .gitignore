@@ -6,7 +6,8 @@ __pycache__/
 
 # Virtual env #
 venv/
-.env/
+.env
+env_template
 
 # Static file, medios #
 /staticfiles/

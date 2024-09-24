@@ -23,95 +23,105 @@ You will need to have install postgres SQL 14
 
 ### WSL
 
-To set it up, your system must be running Windows 10 version 2004 or a newer version, or it should be running Windows 11.If you have an older version, please refer this [manual ](https://learn.microsoft.com/en-us/windows/wsl/install-manual)
+To set up WSL, ensure your system is running Windows 10 version 2004 or later, or Windows 11. If you're using an older version, please refer to the [manual ](https://learn.microsoft.com/en-us/windows/wsl/install-manual) for upgrading your system to a compatible version.
 
-Now, you have the option to install all the necessary components for running Windows Subsystem for Linux (WSL) using a single command. 
-To do this, open PowerShell or the Windows Command Prompt with administrator privileges (right-click and choose "Run as administrator"). Input the command `wsl --install`, and after that, restart your computer.
+Now, you can install all the necessary components for Windows Subsystem for Linux (WSL) with a single command.
 
-After restarting your computer, launch the Windows Subsystem for Linux (WSL) with administrator privileges. You will then be prompted to set up a username and password for your Linux distribution.
+To get started, open PowerShell or the Windows Command Prompt as an administrator (right-click and select "Run as administrator"). Then, run the command `wsl --install`. Once the installation is complete, restart your computer.
 
-This account will be designated as the Linux administrator, granting the capability to execute sudo (Super User Do) administrative commands.
+After the restart, launch WSL with administrator privileges. You'll be prompted to create a username and password for your Linux distribution.
+
+This account will be your Linux administrator, allowing you to run administrative commands using `sudo` (Super User Do).
 
 
 ### MariaDB
 
-Prior to installing MariaDB, you need to execute the following command `sudo apt update && sudo apt upgrade`.
-If you get the _Temporary failure resolving error_ you have to change the DNS.
+Before installing MariaDB, run the following command: `sudo apt update && sudo apt upgrade`.
 
-Type `sudo nano /etc/resolv.conf` in that file, modify the IP address to 8.8.8.8, save the changes, and then execute the update and upgrade commands again.
+If you encounter a _Temporary failure resolving error_, you'll need to update the DNS settings.
+Enter `sudo nano /etc/resolv.conf`, change the IP address to `8.8.8.8`, save the file, and rerun the update and upgrade commands.
 
-Type this command: `sudo apt install mariadb-server </br> 
-Executing these commands will install MariaDB without requiring you to set a password or make any additional configuration changes. As the default setup may leave your MariaDB installation vulnerable, you'll utilize a script provided by the mariadb-server package to limit server access and remove any inactive accounts.
+Next, install MariaDB with this command: `sudo apt install mariadb-server`.
 
-So, type this command: `sudo mysql_secure_installation`
-Then, simply press ENTER to indicate 'none'.
+This will install MariaDB without requiring a password or additional configurations. Since the default setup may leave your MariaDB instance vulnerable, use the script provided by the `mariadb-server` package to secure it by limiting access and removing inactive accounts.
 
-> Output
-> NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB
->      SERVERS IN PRODUCTION USE!  PLEASE READ EACH STEP CAREFULLY!
+Run the command: `sudo mysql_secure_installation`, and press ENTER when prompted to leave the password as 'none'.
+
+> **Output:** <br>
+> **NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB SERVERS IN PRODUCTION USE! PLEASE READ EACH STEP CAREFULLY!**
 >
-> In order to log into MariaDB to secure it, you'll need the current
-> password for the root user.  If you've just installed MariaDB, and
-> you haven't set the root password yet, the password will be blank,
-> so you should just press enter here.
+> To log into MariaDB for securing it, you'll need the current password for the root user. If you’ve just installed MariaDB and haven’t set a root password yet, leave the field blank and simply press ENTER.
 >
->Enter current password for root (enter for none):
+> **Enter current password for root (enter for none):**
 
-You'll encounter a query asking whether you wish to transition to Unix socket authentication. Given that you already possess a secured root account, you can bypass this stage. Type 'n' and then press ENTER to proceed.
 
-> Output
-> . . .
-> Setting the root password or using the unix_socket ensures that nobody
-> can log into the MariaDB root user without the proper authorisation.
+You will be prompted with a question about transitioning to Unix socket authentication. Since you already have a secured root account, you can skip this step. Simply type 'n' and press ENTER to continue.
+
+> **Output:**
+> <br>
+> Setting the root password or using Unix socket authentication ensures that no one can access the MariaDB root user without proper authorization.
 >
-> You already have your root account protected, so you can safely answer 'n'.
+> Since your root account is already secured, you can confidently respond with 'n'.
 >
-> Switch to unix_socket authentication [Y/n] n
+> **Switch to Unix socket authentication [Y/n]:** n
 >
-> Once installed, you'll primarily utilize these three commands for working with MariaDB:
+> After the installation, you will mainly use these three commands to interact with MariaDB:
 
 Now, type 'n' and then press ENTER to proceed.
 
-> Output
-> . . .
+> **Output:**
+> <br>
 > OK, successfully used password, moving on...
 >
-> Setting the root password ensures that nobody can log into the MariaDB <br>
-> root user without the proper authorisation.
+> Setting the root password ensures that no one can access the MariaDB root user without proper authorization.
 >
-> Set root password? [Y/n] n
+> **Set root password? [Y/n]:** n
 
-Afterward, you can proceed by pressing 'Y' and then ENTER to accept the defaults for all subsequent prompts. This action will remove certain anonymous users and the test database, disable remote root logins, and immediately implement these new configurations so that MariaDB enforces the changes you've made.
+After that, you can press 'Y' and then ENTER to accept the default settings for all subsequent prompts. This will remove anonymous users and the test database, disable remote root logins, and apply the new configurations, ensuring that MariaDB enforces the changes you've made.
 
-Optional, you can create an administrative user.
-Please follow the next steps
+If desired, you can also create an administrative user. Please follow the next steps:
 
->    Type `sudo mariadb` <br>
-> Then create a new user with root privileges and password-based access. Be sure to change the username and password to match your preferences: <br>
-> Then `GRANT ALL ON *.* TO 'admin'@'localhost' IDENTIFIED BY 'password' WITH GRANT OPTION;` <br>
-> Flush the privileges to ensure that they are saved and available in the current session: <br>
-> `FLUSH PRIVILEGES;` <br>
-> Following this, exit the MariaDB shell: `exit`
+> Type `sudo mariadb` to access the MariaDB shell.
+>
+> Next, create a new user with root privileges and password-based access. Be sure to replace the username and password with your desired values:
+>
+> ```sql
+> GRANT ALL ON *.* TO 'admin'@'localhost' IDENTIFIED BY 'password' WITH GRANT OPTION;
+> ```
+>
+> Then, flush the privileges to ensure that the changes are saved and accessible in the current session:
+>
+> ```sql
+> FLUSH PRIVILEGES;
+> ```
+>
+> Finally, exit the MariaDB shell by typing: 
+>
+> ```sql
+> exit
+> ```
 
-Now it's time to initiate the process and confirm whether the installation was successful.
 
-- `sudo systemctl start mariadb` to initiate the database, it will prompt you for the WSL root key.
-- `sudo systemctl status mariadb` to know the status of the database.
-- `sudo systemctl stop mariadb` to stop the database
+Now it's time to start the process and verify if the installation was successful.
 
-
-### Establishing a connection from Windows HeidiSQL to WSL2 MariaSB.
+- Use `sudo systemctl start mariadb` to launch the database; you may be prompted for the WSL root password.
+- Run `sudo systemctl status mariadb` to check the current status of the database.
+- If needed, use `sudo systemctl stop mariadb` to halt the database service.
 
 
-After finishing the MariaDB installation, download and install [HeidiSQL](https://www.heidisql.com/download.php?download=installer). Make sure the MariaDB service is up before proceeding.
+### To establish a connection from Windows HeidiSQL to MariaDB running on WSL2.
 
-- Launch HeidiSQL. Once inside, initiate the process of creating a server by right-clicking on **New**. Make sure that Network type is MAriaDB or MySQL (TCP/IP) 
+Ensure that you have HeidiSQL installed on your Windows machine. <br> You can download it from the [HeidiSQL](https://www.heidisql.com/download.php?download=installer) website. 
+
+Make sure the MariaDB service is up before proceeding.
+
+- Launch HeidiSQL. Once inside, start the process of creating a new server by right-clicking on **New**. Ensure that the **Network Type** is set to **MariaDB** or **MySQL (TCP/IP)**. 
 ![Register server image](https://imgur.com/aPhI7wt.png)
 
 
 ### Create and populate the database
 
-- Once you've established a new session and accessed it, you'll need to right-click on the session name and select the option to create a new database.  
+- Once you've established a new session and accessed it, right-click on the session name and select the option to <br> **Create new database**. This will allow you to set up a new database within your MariaDB instance..  
 ![Database name image](https://imgur.com/6l7DLnL.png)
 
 - Set the next name 'mariadbScaffold'.  
@@ -120,15 +130,15 @@ After finishing the MariaDB installation, download and install [HeidiSQL](https:
 - After the previous steps you will see this.
 ![Database name image](https://imgur.com/6rzIjnM.png)
 
+Once you've created the database, go to the **Query** tab, copy the code from the `_DRFDB.sql` file, and paste it into the script area. Execute the script to run the SQL commands.
 
-Once you have created the database, on the query tab copy the code from the _DRFDB.sql_ file and paste it into the script file and execute it.
-Make sure that you already follow the steps to run the django server [DJANGO - GETTING STARTED](https://github.com/Jirzo/DJANGOM) , because on that process Django create ours tables so the sql file will only populate the tables.
+Ensure you have already followed the steps to run the Django server as outlined in the [DJANGO - GETTING STARTED](https://github.com/Jirzo/DJANGOM) guide, as this process creates the necessary tables. The SQL file will then only be used to populate those tables.
+
 If a modal appears, simply press the yes option.
 
 - [MariaDB script](https://github.com/Jirzo/DJANGOM/blob/main/DB/DJANGOM.sql) - file path
 
 
-If the process was successful you will see a message like this: `Affected rows: 25  Found rows: 0  Warnings: 0  Duration for 32 queries: 0.125 sec.` Lastly, you'll witness the database populating, and upon running the file, you'll have visibility into the tables and be capable of executing queries. </br>
+IIf the process was successful, you will see a message similar to this: `Affected rows: 25  Found rows: 0  Warnings: 0  Duration for 32 queries: 0.125 sec.` Finally, you will observe the database being populated. After running the file, you will have visibility into the tables and will be able to execute queries against them. </br>
 ![Create database image](https://imgur.com/5qpYsUk.png)
-
 <hr/>
