@@ -9,11 +9,6 @@ venv/
 .env
 env_template
 
-# Static file, medios #
-/staticfiles/
-/media/
-
-
 # Migration files
 *.log
 *.pot
