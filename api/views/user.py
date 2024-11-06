@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
 from ..models import User
-from ..serializers.userSerializer import UserSerializer
+from ..serializers.userSerializer import UserSerializer, UserListSerializer
 
 
 class UserAPIList(APIView):
@@ -14,14 +14,14 @@ class UserAPIList(APIView):
                 user = User.objects.get(id=id)
             except User.DoesNotExist:
                 return Response({"status": "User not found"}, status=status.HTTP_404_NOT_FOUND)
-            user_serializer = UserSerializer(user)
+            user_serializer = UserListSerializer(user)
             return Response({"status": "success", "data": user_serializer.data}, status=status.HTTP_200_OK)
         categories = User.objects.all()
-        user_serializer = UserSerializer(categories, many=True)
+        user_serializer = UserListSerializer(categories, many=True)
         return Response({"status": "success", "data": user_serializer.data}, status=status.HTTP_200_OK)
 
     def post(self, request):
-        users_serializer = self.UserSerializer(data=request.data)
+        users_serializer = UserSerializer(data=request.data)
         if users_serializer.is_valid():
             users_serializer.save()
             return Response({"status": "User Created", "data": users_serializer.data}, status=status.HTTP_201_CREATED)
@@ -46,4 +46,4 @@ class UserAPIList(APIView):
         except User.DoesNotExist:
             return Response({"status": "User not found"}, status=status.HTTP_404_NOT_FOUND)
         category.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response({"status": "User deleted"}, status=status.HTTP_204_NO_CONTENT)
