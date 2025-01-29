@@ -16,7 +16,7 @@ jobs:
         python-version: [3.9, 3.10, 3.11, 3.12]
     
     steps:
-        - name: Checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v4 
 
       - name: Set up Python @{{ matrix.python-version }}
@@ -33,7 +33,7 @@ jobs:
           source .\venv\Scripts\activate
           python -m pip install --upgrade pip
           pip install -r ./requirements/base.txt
-          
+
       - name: Run Tests
         run: |
           source .\venv\Scripts\activate
