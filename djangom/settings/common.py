@@ -23,10 +23,10 @@ LOCAL_APPS = [
 THIRD_APPS = [
     'rest_framework',
     'simple_history',
-    'coreapi',
     'debug_toolbar',
     'django_extensions',
-    'drf_yasg'
+    'drf_yasg',
+    'rest_framework_simplejwt'
 ]
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
@@ -41,6 +41,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "debug_toolbar.middleware.DebugToolbarMiddleware",
+    'api.middleware.Handle500ErrorMiddleware'
 ]
 
 ROOT_URLCONF = 'djangom.urls'
