@@ -3,7 +3,7 @@ name: Django cli
 on:
   pull_request:  
     branches: ["*"]
-  merge:
+  push:
     branches: ["*"]
 
 jobs:
