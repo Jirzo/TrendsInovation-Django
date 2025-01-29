@@ -23,7 +23,6 @@ LOCAL_APPS = [
 THIRD_APPS = [
     'rest_framework',
     'simple_history',
-    'coreapi',
     'debug_toolbar',
     'django_extensions',
     'drf_yasg',
