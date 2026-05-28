@@ -11,6 +11,13 @@ DEBUG = os.environ.get("DEBUG")
 PRODUCTION = os.environ.get('PRODUCTION')
 DB_HOST = os.environ.get('DB_HOST')
 
+
+allowed_hosts_str = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1')
+
+
+ALLOWED_HOSTS = allowed_hosts_str.split(',')
+
+
 if DB_HOST: 
     DATABASES = {
         'default': {
