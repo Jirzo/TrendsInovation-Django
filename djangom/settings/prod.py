@@ -1,6 +1,9 @@
 from .common import *
 from dotenv import load_dotenv
 import os
+import pymysql
+
+pymysql.install_as_MySQLdb()
 
 load_dotenv()
 SECRET_KEY = os.environ.get("SECRET_KEY")
