@@ -9,7 +9,6 @@ load_dotenv()
 SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = os.environ.get("DEBUG")
 PRODUCTION = os.environ.get('PRODUCTION')
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 DB_HOST = os.environ.get('DB_HOST')
 
 if DB_HOST: 
